@@ -90,16 +90,18 @@ function get_pairings(R, S, T)
 
   A := d10*d4;
   B := A^2*d10;
-  C := 1/B;
-  D := C*A;
   E := d2*d9;
   F := E*d8;
   G := E*d1*d9^2;
+  P := G*delta;
+  Q := 1/(B*P);
+  C := P*Q;
+  D := C*A;
   H := E*d2*d9^2*d8^3;
 
 
   r := -F*(d5-R)*D;
-  s := B/(G*delta);
+  s := B^2*Q;
   t := H*C;
 
   d1 := t;
@@ -151,7 +153,14 @@ function get_b4s(R, S, T, a, b, c)
   A2 := D2*A1;
   A3 := A2^2;
   A4 := A3*D2*A0;
-  I1 := 1/A4;
+
+  E0 := D4^2;
+  E1 := E0*D4;
+  E2 := E1*D5;
+
+  P := 1/(A4*E2);
+
+  I1 := E2*P;
   I2 := I1*D2;
   I3 := I2*D2;
   I4 := I1*A2;
@@ -205,10 +214,7 @@ function get_b4s(R, S, T, a, b, c)
   T1 := T0*DELTA;
   T2 := T1*D9;
 
-  E0 := D4^2;
-  E1 := E0*D4;
-  E2 := E1*D5;
-  E3 := 1/E2;
+  E3 := A4*P;
   E4 := I1*D9^2;
   E5 := E3*E1;
   E6 := E4*T1;
@@ -507,15 +513,17 @@ function get_isogenous_RST(r, s, t)
 
   A := d10*d4;
   B := A^2*d10;
-  C := 1/B;
-  D := A*C;
   E := d2*d9;
   F := E*d8;
   G := E*d1*d9^2;
+  P := G*delta;
+  Q := 1/(B*P);
+  C := P*Q;
+  D := C*A;
   H := F^2*d9*d8;
-  
+
   R := -F*(d5-r)*D;
-  S := B/(G*delta);
+  S := B^2*Q;
   T := H*C;
 
   return R, S, T;
