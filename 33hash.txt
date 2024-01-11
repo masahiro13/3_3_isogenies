@@ -97,7 +97,7 @@ function get_pairings(R, S, T)
   Q := 1/(B*P);
   C := P*Q;
   D := C*A;
-  H := E*d2*d9^2*d8^3;
+  H := F^2*d9*d8;
 
 
   r := -F*(d5-R)*D;
